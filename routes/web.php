@@ -12,5 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('layouts.master');
+    return view('welcome');
 });
+
+Route::resource('/category', 'CategoryController')->except('show');
+Route::get('/categories', 'CategoryController@getData')->name('category.getData');

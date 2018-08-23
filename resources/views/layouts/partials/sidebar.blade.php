@@ -12,7 +12,7 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MENU</li>
             <li>
-                <a href="#">
+                <a href="{{ route('dashboard') }}">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
@@ -22,7 +22,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{ route('product.index') }}">
                     <i class="fa fa-file-text"></i> <span>Product</span>
                 </a>
             </li>

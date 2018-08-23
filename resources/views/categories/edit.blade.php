@@ -58,43 +58,9 @@
             $("#category").validate({
                 rules: {
                     name: {
-                        required: true,
-                        lettersonly: true
-                    }
-                },
-                messages: {
-                    name: {
-                        required: "Kolom ini tidak boleh kosong."
+                        required: true
                     }
                 }
-            });
-
-            jQuery.validator.addMethod("lettersonly", function(value, element) {
-                return this.optional(element) || /^[a-z\s]+$/i.test(value);
-            }, "Silahkan masukkan huruf dan spasi saja.");
-
-            $('#category').on('submit', function(e) {
-                e.preventDefault();
-
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-
-                $.ajax({
-                    url: "{{ route('category.store') }}",
-                    type: "POST",
-                    data: {
-                        name: $('#name').val(),
-                        description: $('#description').val()
-                    },
-                    dataType: "json",
-                    success: function(result) {
-                        $('.alert').show();
-                        $('.alert').html(result.success);
-                    }
-                });
             });
         });
     </script>

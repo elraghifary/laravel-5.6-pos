@@ -56,11 +56,6 @@
                     name: {
                         required: true
                     }
-                },
-                messages: {
-                    name: {
-                        required: "Kolom ini tidak boleh kosong."
-                    }
                 }
             });
         });

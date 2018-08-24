@@ -11,17 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function() {
+    return redirect(route('login'));
 });
 
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Auth::routes();
 
-// Category Routes
-Route::resource('/category', 'CategoryController')->except('show');
-Route::get('/categories', 'CategoryController@getData')->name('category.getData');
-Route::post('/category/import', 'CategoryController@importExcel')->name('category.importExcel');
+Route::group(['middleware' => 'auth'], function() {
+    // Category Routes
+    Route::resource('/category', 'CategoryController')->except('show');
+    Route::get('/categories', 'CategoryController@getData')->name('category.getData');
+    Route::post('/category/import', 'CategoryController@importExcel')->name('category.importExcel');
 
-// Product Routes
-Route::resource('/product', 'ProductController');
-Route::get('/products', 'ProductController@getData')->name('product.getData');
+    // Product Routes
+    Route::resource('/product', 'ProductController');
+    Route::get('/products', 'ProductController@getData')->name('product.getData');
+
+    // Dashboard Routes
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+});

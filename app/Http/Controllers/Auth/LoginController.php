@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -35,5 +36,13 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function login(Request $request)
+    {        
+        if (auth()->attempt(['email' => $request->email, 'password' => $request->password, 'status' => 1])) {
+            return redirect()->intended('dashboard');
+        }
+        return redirect()->back()->with(['error' => 'Wrong password or inactive user!']);
     }
 }

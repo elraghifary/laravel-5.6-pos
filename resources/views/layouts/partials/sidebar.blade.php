@@ -26,6 +26,17 @@
                     <i class="fa fa-file-text"></i> <span>Product</span>
                 </a>
             </li>
+            <li>
+                <a href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                    document.getElementById('form-logout').submit();">
+                    <i class="fa fa-sign-out"></i><span>{{ __('Logout') }}</span>
+                </a>
+
+                <form id="form-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </li>
         </ul>
     </section>
 </aside>

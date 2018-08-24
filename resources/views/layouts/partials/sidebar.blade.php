@@ -27,6 +27,11 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('role.index') }}">
+                    <i class="fa fa-file-text"></i> <span>Role</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                     document.getElementById('form-logout').submit();">

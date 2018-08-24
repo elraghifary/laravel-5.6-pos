@@ -29,4 +29,10 @@ Route::group(['middleware' => 'auth'], function() {
 
     // Dashboard Routes
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+    // Role Routes
+    Route::resource('/role', 'RoleController')->except([
+        'create', 'show', 'edit', 'update'
+    ]);
+    Route::get('/roles', 'RoleController@getData')->name('role.getData');
 });

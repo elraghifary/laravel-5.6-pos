@@ -9,8 +9,8 @@
     <style type="text/css">
         .error { color: #dd4b39 !important; }
         .tab-pane {
-            height:150px;
-            overflow-y:scroll;
+            height: 200px;
+            overflow-y: scroll;
         }
     </style>
 @endpush
@@ -82,8 +82,7 @@
                                     </span>
                                 </div>
                             </div>
-                        </form>
-                        
+                        </form>                        
                         @if (!empty($permissions))
                             <form action="{{ route('user.setRolePermission', request()->get('role')) }}" method="post">
                                 @csrf

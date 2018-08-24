@@ -69,16 +69,6 @@
         $( document ).ready(function() {
             $("#form-set-role-user").validate({
                 rules: {
-                    name: {
-                        required: true
-                    },
-                    email: {
-                        required: true,
-                        email: true
-                    },
-                    password: {
-                        required: true
-                    },
                     role: {
                         required: true
                     }

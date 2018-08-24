@@ -16,8 +16,6 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-Route::get('/chart', 'DashboardController@getDataChart')->name('dashboard.chart.getData');
-
 Route::resource('/category', 'CategoryController')->except('show');
 Route::get('/categories', 'CategoryController@getData')->name('category.getData');
 Route::resource('/product', 'ProductController');

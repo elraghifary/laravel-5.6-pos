@@ -14,11 +14,43 @@
 
     <section class="content">
         <div class="row">
-            <div class="col-sm-6">
-                <div id="piechart" style="width:500px; height:500px;"></div>
-            </div>
-            <div class="col-sm-6">
-                <div id="columnchart" style="width:500px; height:500px;"></div>
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-sm-6">
+                <div class="small-box bg-blue">
+                    <div class="inner">
+                        <h3>{{ $countCategories }}</h3>
+                        <p>Category</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion-document-text"></i>
+                    </div>
+                    <a href="{{ route('category.index') }}" class="small-box-footer">More information <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+                </div>
+                <div class="col-sm-6">
+                <div class="small-box bg-blue">
+                    <div class="inner">
+                        <h3>{{ $countProducts }}</h3>
+                        <p>Product</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion-document-text"></i>
+                    </div>
+                    <a href="{{ route('product.index') }}" class="small-box-footer">More information <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+                </div>
+                </div>
+                <div class="box">
+                    <div class="box-body">
+                        <div class="col-sm-6">
+                            <div id="piechart"></div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div id="columnchart"></div>
+                        </div>    
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -30,21 +62,9 @@
         var stock = <?php echo $stock; ?>;
 
         google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(columnChart);
+        google.charts.setOnLoadCallback(drawChart);
 
         function drawChart() {
-            var data = google.visualization.arrayToDataTable(stock);
-
-            var options = {
-                title: 'Stock Products'
-            };
-
-            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-            chart.draw(data, options);
-        }
-
-        function columnChart() {
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Product Name');
             data.addColumn('number', 'Stock');
@@ -52,7 +72,9 @@
             data.addRows(stock);
 
             var options = {
-                title: 'Stock Products'
+                title: 'Stock Products',
+                width: '100%',
+                height: '400'
             };
 
             var piechart = new google.visualization.PieChart(document.getElementById('piechart'));

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
 use App\Product;
 
 class DashboardController extends Controller
@@ -10,10 +11,15 @@ class DashboardController extends Controller
     public function index()
     {
         $products = Product::all();
-        $array = [];
+        $countCategories = Category::count();
+        $countProducts = Product::count();
+
+        $chart = [];
+
         foreach($products as $key => $value) {
-            $array[] = [$value->name, (int) $value->stock];
+            $chart[] = [$value->name, (int) $value->stock];
         }
-        return view('dashboard')->with('stock', json_encode($array));
+
+        return view('dashboard', compact('countCategories', 'countProducts'))->with('stock', json_encode($chart));
     }
 }

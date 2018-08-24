@@ -32,6 +32,16 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('user.role_permissions') }}">
+                    <i class="fa fa-file-text"></i> <span>Role Permission</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('user.index') }}">
+                    <i class="fa fa-file-text"></i> <span>User</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                     document.getElementById('form-logout').submit();">

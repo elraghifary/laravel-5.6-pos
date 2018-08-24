@@ -47,7 +47,7 @@
                                 <input type="text" name="price" id="price" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="">Category</label>
+                                <label for="category_id">Category</label>
                                 <select name="category_id" id="category_id" class="form-control">
                                     <option value="">Select</option>
                                     @foreach ($categories as $row)
@@ -56,9 +56,8 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="">Photo</label>
+                                <label for="photo">Photo</label>
                                 <input type="file" name="photo" class="form-control">
-                                <p class="text-danger">{{ $errors->first('photo') }}</p>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Save</button>

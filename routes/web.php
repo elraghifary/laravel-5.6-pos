@@ -35,4 +35,13 @@ Route::group(['middleware' => 'auth'], function() {
         'create', 'show', 'edit', 'update'
     ]);
     Route::get('/roles', 'RoleController@getData')->name('role.getData');
+
+    // User Routes
+    Route::resource('/user', 'UserController')->except('show');
+    Route::get('/user/roles/{id}', 'UserController@roles')->name('user.roles');
+    Route::put('/user/roles/{id}', 'UserController@setRole')->name('user.set_role');
+    Route::put('/user/permission/{role}', 'UserController@setRolePermission')->name('user.setRolePermission');
+    Route::post('/user/permission', 'UserController@addPermission')->name('user.add_permission');
+    Route::get('/user/role-permission', 'UserController@rolePermission')->name('user.role_permissions');
+    Route::get('/users', 'UserController@getData')->name('user.getData');
 });

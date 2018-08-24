@@ -47,19 +47,6 @@ class ProductController extends Controller
         }
     }
 
-    public function destroy($id)
-    {
-        $product = Product::findOrFail($id);
-
-        if (!empty($product->photo)) {
-            File::delete(public_path('uploads/product/' . $product->photo));
-        }
-
-        $product->delete();
-
-        return redirect()->back()->with(['success' => 'Product: <strong>' . $product->name . '</strong> was deleted.']);
-    }
-
     public function edit($id)
     {
         $product = Product::findOrFail($id);
@@ -94,6 +81,19 @@ class ProductController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }
+    }
+
+    public function destroy($id)
+    {
+        $product = Product::findOrFail($id);
+
+        if (!empty($product->photo)) {
+            File::delete(public_path('uploads/product/' . $product->photo));
+        }
+
+        $product->delete();
+
+        return redirect()->back()->with(['success' => 'Product: <strong>' . $product->name . '</strong> was deleted.']);
     }
 
     private function saveFile($name, $photo)
@@ -136,7 +136,7 @@ class ProductController extends Controller
             $output['data'][$i][] = $value->category->name;
             $output['data'][$i][] = date('j M Y h:i', strtotime($value->updated_at));
             $output['data'][$i][] = '
-                <form action="' . $link_delete . '" method="POST">
+                <form action="' . $link_delete . '" method="post">
                     <a href="' . $link_edit . '" class="btn btn-warning btn-xs" data-popup="tooltip" title="Edit Product"><i class="fa fa-edit"></i></a>
                     <input type="hidden" name="_token" value="' . csrf_token() . '">
                     <input type="hidden" name="_method" value="DELETE">

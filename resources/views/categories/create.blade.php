@@ -24,7 +24,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-body">
-                        <form role="form" id="form-category" action="{{ route('category.store') }}" method="POST">
+                        <form role="form" id="form-category" action="{{ route('category.store') }}" method="post">
                             @csrf
                             <div class="form-group">
                                 <label for="name">Category</label>

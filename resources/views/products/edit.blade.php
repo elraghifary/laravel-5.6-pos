@@ -24,7 +24,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-body">
-                        <form role="form" id="form-product" action="{{ route('product.update', $product->id) }}" method="POST" enctype="multipart/form-data">
+                        <form role="form" id="form-product" action="{{ route('product.update', $product->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
                             <div class="form-group">

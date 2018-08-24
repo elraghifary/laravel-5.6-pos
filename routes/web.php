@@ -16,7 +16,12 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+// Category Routes
 Route::resource('/category', 'CategoryController')->except('show');
 Route::get('/categories', 'CategoryController@getData')->name('category.getData');
+Route::post('/category/import', 'CategoryController@importExcel')->name('category.importExcel');
+
+// Product Routes
 Route::resource('/product', 'ProductController');
 Route::get('/products', 'ProductController@getData')->name('product.getData');

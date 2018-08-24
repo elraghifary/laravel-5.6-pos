@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use DB;
+use Excel;
 
 class CategoryController extends Controller
 {
@@ -80,7 +82,7 @@ class CategoryController extends Controller
             $output['data'][$i][] = $value->name;
             $output['data'][$i][] = $value->description;
             $output['data'][$i][] = '
-                <form action="' . $link_delete . '" method="POST">
+                <form action="' . $link_delete . '" method="post">
                     <a href="' . $link_edit . '" class="btn btn-warning btn-xs" data-popup="tooltip" title="Edit Category"><i class="fa fa-edit"></i></a>
                     <input type="hidden" name="_token" value="' . csrf_token() . '">
                     <input type="hidden" name="_method" value="DELETE">
@@ -90,5 +92,23 @@ class CategoryController extends Controller
         }
 
         echo json_encode($output);
+    }
+
+    public function importExcel(Request $request)
+    {
+        if ($request->hasFile('file')) {
+            Excel::load($request->file('file')->getRealPath(), function ($reader) {
+                foreach ($reader->toArray() as $key => $row) {
+                    $data['name'] = $row['name'];
+                    $data['description'] = $row['description'];
+
+                    if (!empty($data)) {
+                        DB::table('categories')->insert($data);
+                    }
+                }
+            });
+        }
+
+        return redirect()->back()->with(['success' => 'File has been imported to database.']);
     }
 }

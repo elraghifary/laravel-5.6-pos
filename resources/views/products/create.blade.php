@@ -24,7 +24,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-body">
-                        <form role="form" id="form-product" action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
+                        <form role="form" id="form-product" action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label for="code">Product Code</label>

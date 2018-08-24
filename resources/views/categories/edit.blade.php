@@ -24,7 +24,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-body">  
-                        <form role="form" action="{{ route('category.update', $category->id) }}" method="POST">
+                        <form role="form" action="{{ route('category.update', $category->id) }}" method="post">
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
                             <div class="form-group">

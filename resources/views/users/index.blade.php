@@ -42,7 +42,6 @@
                                     <th style="width: 5%">#</th>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Role</th>
                                     <th>Status</th>
                                     <th style="width: 5%">Action</th>
                                 </tr>
@@ -65,7 +64,19 @@
             var table = $('#user').DataTable({
                 ajax: {
                     url: '{{ route('user.getData') }}'
-                }
+                },
+                "columnDefs": [
+                    {
+                        "render": function(data, type, row) {
+                            if (data) {
+                                return '<span class="label label-success">Active</span>';
+                            } else {
+                                return '<span class="label label-warning">Inactive</span>';
+                            }
+                    },
+                    "targets": 3
+                  }
+                ]
             });
         });
     </script>

@@ -12,8 +12,13 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
-        return view('users.index', compact('users'));
+        return view('users.index');
+    }
+
+    public function show($id)
+    {
+        $user = User::findOrFail($id);
+        return view('users.show', compact('user'));
     }
 
     public function create()
@@ -138,17 +143,18 @@ class UserController extends Controller
         );
 
         foreach ($users as $key => $value) {
+            $link_show = route('user.show', $value->id);
             $link_role = route('user.roles', $value->id);
             $link_edit = route('user.edit', $value->id);
             $link_delete = route('user.destroy', $value->id);
             $output['data'][$i][] = $key+1;
             $output['data'][$i][] = $value->name;
             $output['data'][$i][] = $value->email;
-            $output['data'][$i][] = $value->email;
             $output['data'][$i][] = $value->status;
             $output['data'][$i][] = '
                 <form action="' . $link_delete . '" method="post">
-                    <a href="' . $link_role . '" class="btn btn-info btn-xs"><i class="fa fa-user-secret"></i></a>
+                    <a href="' . $link_role . '" class="btn btn-info btn-xs" data-popup="tooltip" title="Role User"><i class="fa fa-user-secret"></i></a>
+                    <a href="' . $link_show . '" class="btn btn-default btn-xs" data-popup="tooltip" title="Show User"><i class="fa fa-eye"></i></a>
                     <a href="' . $link_edit . '" class="btn btn-warning btn-xs" data-popup="tooltip" title="Edit User"><i class="fa fa-edit"></i></a>
                     <input type="hidden" name="_token" value="' . csrf_token() . '">
                     <input type="hidden" name="_method" value="DELETE">

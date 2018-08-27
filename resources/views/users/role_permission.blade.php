@@ -68,7 +68,7 @@
                             </div>
                         </div>
                         <hr>
-                        <form role="form" action="{{ route('user.role_permissions') }}" method="get">
+                        <form role="form" action="{{ route('user.roles_permission') }}" method="get">
                             <div class="form-group">
                                 <label for="">Roles</label>
                                 <div class="input-group">

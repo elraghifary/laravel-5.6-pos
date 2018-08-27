@@ -35,7 +35,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('user.role_permissions') }}">
+                        <a href="{{ route('user.roles_permission') }}">
                             <i class="fa fa-circle-o"></i> <span>Role Permission</span>
                         </a>
                     </li>
